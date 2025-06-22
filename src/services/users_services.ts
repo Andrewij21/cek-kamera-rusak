@@ -22,11 +22,13 @@ class Users_Services {
     return user;
   }
   async add(body: Body) {
-    if (typeof body.email !== "string") throw createHttpError(422);
+    if (typeof body.email.trim() !== "string") throw createHttpError(422);
     if (typeof body.password !== "string")
       throw createHttpError(422, "Password is required");
-    if (typeof body.role !== "string")
+    if (typeof body.role.trim() !== "string")
       throw createHttpError(422, "Role is required");
+
+    if (body.role == "") body.role = "user";
 
     const hashedPassword = await bcrypt.hash(body.password, 10);
 
