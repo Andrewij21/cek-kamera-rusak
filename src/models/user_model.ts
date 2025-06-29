@@ -7,6 +7,7 @@ const User_Schema = new Schema({
     unique: true,
   },
   password: String,
+  contact: String,
   role: String,
 });
 

@@ -7,6 +7,7 @@ import bcrypt from "bcryptjs";
 interface Body {
   email: String;
   password: String;
+  contact: String;
   role: String;
 }
 
@@ -27,6 +28,8 @@ class Users_Services {
       throw createHttpError(422, "Password is required");
     if (typeof body.role.trim() !== "string")
       throw createHttpError(422, "Role is required");
+    if (typeof body.contact.trim() !== "string")
+      throw createHttpError(422, "Contact is required");
 
     if (body.role == "") body.role = "user";
 
