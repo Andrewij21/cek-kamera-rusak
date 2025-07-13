@@ -10,6 +10,7 @@ interface Body {
   contact: String;
   userName: String;
   role: String;
+  fullName: String;
 }
 
 class Users_Services {
@@ -33,6 +34,8 @@ class Users_Services {
       throw createHttpError(422, "Contact is required");
     if (typeof body.userName.trim() !== "string")
       throw createHttpError(422, "Username is required");
+    if (typeof body.fullName.trim() !== "string")
+      throw createHttpError(422, "Nama lengkap is required");
 
     if (body.role == "") body.role = "user";
 
@@ -42,7 +45,6 @@ class Users_Services {
       ...body,
       password: hashedPassword, // override plain password
     });
-    // console.log({ newUser });
     return newUser;
   }
 

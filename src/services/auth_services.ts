@@ -23,6 +23,7 @@ class Auth_Services {
         role: user.role,
         contact: user.contact,
         userName: user.userName,
+        fullName: user.fullName,
       },
       process.env.JWT_SECRET || "secretKey",
       { expiresIn: "1h" }
