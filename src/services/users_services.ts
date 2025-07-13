@@ -8,6 +8,7 @@ interface Body {
   email: String;
   password: String;
   contact: String;
+  userName: String;
   role: String;
 }
 
@@ -30,6 +31,8 @@ class Users_Services {
       throw createHttpError(422, "Role is required");
     if (typeof body.contact.trim() !== "string")
       throw createHttpError(422, "Contact is required");
+    if (typeof body.userName.trim() !== "string")
+      throw createHttpError(422, "Username is required");
 
     if (body.role == "") body.role = "user";
 
@@ -39,7 +42,7 @@ class Users_Services {
       ...body,
       password: hashedPassword, // override plain password
     });
-
+    // console.log({ newUser });
     return newUser;
   }
 

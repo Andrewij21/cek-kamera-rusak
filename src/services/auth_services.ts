@@ -6,7 +6,7 @@ import User from "../models/user_model";
 class Auth_Services {
   async login(email: string, password: string) {
     const user = await User.findOne({ email });
-    console.log(user);
+    // console.log(user);
     if (!user || !user.password) {
       throw createHttpError(401, "Email or password is incorrect");
     }
@@ -17,7 +17,13 @@ class Auth_Services {
     }
 
     const token = jwt.sign(
-      { id: user.id, email: user.email, role: user.role },
+      {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+        contact: user.contact,
+        userName: user.userName,
+      },
       process.env.JWT_SECRET || "secretKey",
       { expiresIn: "1h" }
     );

@@ -6,6 +6,7 @@ const User_Schema = new Schema({
     required: true,
     unique: true,
   },
+  userName: String,
   password: String,
   contact: String,
   role: String,
